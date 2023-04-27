@@ -20,3 +20,41 @@
 2023-04-27T13:30:05.023Z [petshop-api] info GET /animal
 2023-04-27T13:30:09.704Z [petshop-api] info GET /animal/:animal_id
 2023-04-27T13:30:15.026Z [petshop-api] info GET /animal
+2023-04-27T18:06:22.898Z [petshop-api] error POST  - column "proprietariol_id" of relation "proprietarios" does not exist
+2023-04-27T18:07:41.284Z [petshop-api] error POST  - column "proprietariol_id" of relation "proprietarios" does not exist
+2023-04-27T18:08:07.666Z [petshop-api] error POST  - column "created_at" of relation "proprietarios" does not exist
+2023-04-27T18:10:07.555Z [petshop-api] info POST /proprietario - {"proprietarioId":9,"nome":"ednaldo pereira","telefone":"(31) 98887-9170"}
+2023-04-27T18:10:14.180Z [petshop-api] info GET /proprietario/:proprietario_id
+2023-04-27T18:10:22.310Z [petshop-api] info GET /proprietario
+2023-04-27T18:10:33.954Z [petshop-api] error DELETE  - Não é possível deletar proprietários que tenham animais no cadastro.
+2023-04-27T18:12:30.161Z [petshop-api] error DELETE  - Não é possível deletar proprietários que tenham animais no cadastro.
+2023-04-27T18:15:09.478Z [petshop-api] error DELETE  - Não é possível deletar proprietários que tenham animais no cadastro.
+2023-04-27T18:15:27.892Z [petshop-api] error DELETE  - Não é possível deletar proprietários que tenham animais no cadastro.
+2023-04-27T18:16:38.496Z [petshop-api] error DELETE  - Não é possível deletar proprietários que tenham animais no cadastro.
+2023-04-27T18:17:48.583Z [petshop-api] info DELETE /proprietario/:proprietario_id
+2023-04-27T18:17:56.695Z [petshop-api] info GET /proprietario
+2023-04-27T18:18:10.025Z [petshop-api] info POST /proprietario - {"proprietarioId":10,"nome":"ednaldo pereira","telefone":"(31) 98887-9170"}
+2023-04-27T18:18:33.788Z [petshop-api] info PUT /proprietario - null
+2023-04-27T18:18:39.090Z [petshop-api] info GET /proprietario
+2023-04-27T18:18:59.636Z [petshop-api] error POST  - Nome, tipo e proprietário são obrigatórios
+2023-04-27T18:19:32.620Z [petshop-api] error POST  - O proprietario_id informado não existe
+2023-04-27T18:19:51.014Z [petshop-api] error POST  - O proprietario_id informado não existe
+2023-04-27T18:20:00.260Z [petshop-api] info GET /proprietario
+2023-04-27T18:20:31.226Z [petshop-api] info POST /animal - {"animalId":12,"nome":"belinha","tipo":"cachorro","proprietarioId":10}
+2023-04-27T18:21:01.876Z [petshop-api] error PUT  - Nome, tipo e proprietário são obrigatórios
+2023-04-27T18:21:19.717Z [petshop-api] error PUT  - Proprietario is not defined
+2023-04-27T18:23:24.397Z [petshop-api] info PUT /animal - {"animalId":1,"nome":"pituxa","tipo":"cachorro","proprietarioId":10}
+2023-04-27T18:24:22.829Z [petshop-api] info GET /animal
+2023-04-27T18:24:31.664Z [petshop-api] info GET /animal
+2023-04-27T18:26:54.291Z [petshop-api] info GET /animal
+2023-04-27T18:27:56.816Z [petshop-api] info GET /animal
+2023-04-27T18:28:39.224Z [petshop-api] info GET /animal
+2023-04-27T18:30:53.370Z [petshop-api] info GET /animal
+2023-04-27T18:31:07.227Z [petshop-api] info GET /animal
+2023-04-27T18:32:44.363Z [petshop-api] error DELETE  - update or delete on table "proprietarios" violates foreign key constraint "fk_proprietarios" on table "animais"
+2023-04-27T18:34:28.062Z [petshop-api] error DELETE  - Não é possível deletar proprietários que tenham animais no cadastro.
+2023-04-27T18:35:35.806Z [petshop-api] info POST /proprietario - {"proprietarioId":11,"nome":"ednaldo o novo pereira","telefone":"(31) 98887-9170"}
+2023-04-27T18:35:49.626Z [petshop-api] info DELETE /proprietario/:proprietario_id
+2023-04-27T18:42:59.985Z [petshop-api] info PUT /proprietario - {"proprietarioId":10,"nome":"joão gomes da silva","telefone":"(31) 99567-9170"}
+2023-04-27T18:43:18.818Z [petshop-api] info PUT /proprietario - {"proprietarioId":10,"nome":"joão gomes novo da silva","telefone":"(31) 99567-9170"}
+2023-04-27T18:43:22.910Z [petshop-api] info GET /proprietario

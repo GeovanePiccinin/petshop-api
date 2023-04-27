@@ -2,14 +2,14 @@ import AnimalRepository from "../repositories/animal.repository.js";
 import ProprietarioRepository from "../repositories/proprietario.repository.js";
 
 async function createAnimal(animal) {
-  if (await ProprietarioRepository.getProprietario(animal.proprietario_id)) {
+  if (await ProprietarioRepository.getProprietario(animal.proprietarioId)) {
     return await AnimalRepository.insertAnimal(animal);
   }
   throw new Error("O proprietario_id informado não existe");
 }
 
 async function updateAnimal(animal) {
-  if (await ProprietarioRepository.getProprietario(animal.proprietario_id)) {
+  if (await ProprietarioRepository.getProprietario(animal.proprietarioId)) {
     return await AnimalRepository.updateAnimal(animal);
   }
   throw new Error("O proprietario_id informado não existe");

@@ -10,12 +10,15 @@ async function updateProprietario(proprietario) {
 }
 
 async function deleteProprietario(proprietario_id) {
-  if (!(await AnimalRepository.getAnimais(proprietario_id))) {
-    return await ProprietarioRepository.deleteProprietario(proprietario_id);
-  }
-  throw new Error(
-    "Não é possível deletar proprietários que tenham animais no cadastro."
+  const res = await AnimalRepository.getAnimaisByProprietarioId(
+    proprietario_id
   );
+  if (res.length) {
+    throw new Error(
+      "Não é possível deletar proprietários que tenham animais no cadastro."
+    );
+  }
+  return await ProprietarioRepository.deleteProprietario(proprietario_id);
 }
 
 async function getProprietarios() {

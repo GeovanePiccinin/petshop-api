@@ -1,5 +1,4 @@
-import * as dotenv from "dotenv";
-dotenv.config();
+import "./env.js";
 import express from "express";
 import cors from "cors";
 import winston from "winston";
