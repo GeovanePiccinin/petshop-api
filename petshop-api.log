@@ -1,0 +1,22 @@
+2023-04-27T01:50:57.102Z [petshop-api] info DELETE /proprietario/:proprietario_id
+2023-04-27T01:58:49.898Z [petshop-api] error GET  - conn.release is not a function
+2023-04-27T02:01:23.589Z [petshop-api] error GET  - conn.release is not a function
+2023-04-27T02:03:41.417Z [petshop-api] info GET /proprietario
+2023-04-27T02:03:47.007Z [petshop-api] info GET /proprietario/:proprietario_id
+2023-04-27T02:31:30.697Z [petshop-api] error POST  - AnimalRepository.insertAnimal is not a function
+2023-04-27T02:32:18.011Z [petshop-api] info POST /animal - {"animal_id":10,"nome":"belinha","tipo":"cachorro","proprietario_id":1}
+2023-04-27T02:32:25.424Z [petshop-api] info GET /animal/:animal_id
+2023-04-27T02:32:41.336Z [petshop-api] info DELETE /animal/:animal_id
+2023-04-27T02:32:44.748Z [petshop-api] error GET  - AnimalRepository.getAnimais is not a function
+2023-04-27T02:33:16.494Z [petshop-api] info GET /animal
+2023-04-27T02:40:11.429Z [petshop-api] error POST  - insert or update on table "animais" violates foreign key constraint "fk_proprietarios"
+2023-04-27T02:43:07.415Z [petshop-api] error POST  - O proprietario_id informado não existe
+2023-04-27T03:13:37.987Z [petshop-api] info GET /proprietario
+2023-04-27T03:14:24.354Z [petshop-api] info GET /proprietario
+2023-04-27T13:09:00.275Z [petshop-api] info GET /animal
+2023-04-27T13:10:17.216Z [petshop-api] info GET /animal
+2023-04-27T13:15:46.662Z [petshop-api] error GET  - getAnimaisByProprietarioId is not defined
+2023-04-27T13:16:28.666Z [petshop-api] info GET /animal
+2023-04-27T13:30:05.023Z [petshop-api] info GET /animal
+2023-04-27T13:30:09.704Z [petshop-api] info GET /animal/:animal_id
+2023-04-27T13:30:15.026Z [petshop-api] info GET /animal
