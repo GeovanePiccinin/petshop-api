@@ -1,82 +1,68 @@
-import { getClient } from "./mongo.db.js";
-import { ObjectId } from "mongodb";
+import { connect } from "./mongo.db.js";
+import PostSchema from "../schemas/post.schema.js";
 
 async function createPost(post) {
-  const client = getClient();
+  console.log(connect);
   try {
-    await client.connect();
-    await client.db("petshop-posts").collection("posts").insertOne(post);
+    const mongoose = await connect();
+    console.log("mongoose", mongoose);
+
+    const Post = mongoose.model("Post", PostSchema);
+    post = new Post(post);
+    post
+      .save()
+      .then(() => {
+        console.log("salvou o post");
+      })
+      .catch((err) => {
+        if (err) {
+          throw err;
+        }
+      });
   } catch (err) {
     throw err;
-  } finally {
-    await client.close();
   }
 }
 
 async function updatePost(post) {
-  const client = getClient();
-  const id = new ObjectId(post._id);
-  delete post._id;
   try {
-    await client.connect();
-    await client
-      .db("petshop-posts")
-      .collection("posts")
-      .updateOne({ _id: id }, { $set: { ...post } });
+    const mongoose = await connect();
+    const Post = mongoose.model("Post", PostSchema);
+    await Post.findByIdAndUpdate(post._id, post);
   } catch (err) {
     throw err;
-  } finally {
-    await client.close();
   }
 }
 
 async function getPost(postId) {
-  const client = getClient();
   try {
-    await client.connect();
-    const post = await client
-      .db("petshop-posts")
-      .collection("posts")
-      .findOne({ _id: new ObjectId(postId) });
-
-    console.log("post", JSON.stringify(post));
-
-    return post;
+    const mongoose = await connect();
+    const Post = mongoose.model("Post", PostSchema);
+    const query = Post.findById(postId);
+    return await query.exec();
   } catch (err) {
     throw err;
-  } finally {
-    await client.close();
   }
 }
 
 async function getPosts() {
-  const client = getClient();
   try {
-    await client.connect();
-    return await client
-      .db("petshop-posts")
-      .collection("posts")
-      .find({})
-      .toArray();
+    const mongoose = await connect();
+    const Post = mongoose.model("Post", PostSchema);
+    const query = Post.find({});
+    return await query.exec();
   } catch (err) {
     throw err;
-  } finally {
-    await client.close();
   }
 }
 
 async function deletePost(postId) {
-  const client = getClient();
   try {
-    await client.connect();
-    return await client
-      .db("petshop-posts")
-      .collection("posts")
-      .deleteOne({ _id: new ObjectId(postId) });
+    const mongoose = await connect();
+    const Post = mongoose.model("Post", PostSchema);
+    await Post.findByIdAndDelete(postId);
   } catch (err) {
     throw err;
-  } finally {
-    await client.close();
   }
 }
 
