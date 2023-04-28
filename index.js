@@ -4,6 +4,9 @@ import cors from "cors";
 import winston from "winston";
 import animalRouter from "./routes/animal.route.js";
 import proprietarioRouter from "./routes/proprietario.route.js";
+import servicoRouter from "./routes/servico.route.js";
+import postRouter from "./routes/post.router.js";
+import comentarioRouter from "./routes/comentario.router.js";
 
 const { combine, timestamp, label, printf } = winston.format;
 const myFormat = printf(({ level, message, label, timestamp }) => {
@@ -24,6 +27,9 @@ app.use(cors());
 
 app.use("/animal", animalRouter);
 app.use("/proprietario", proprietarioRouter);
+app.use("/servico", servicoRouter);
+app.use("/post", postRouter);
+app.use("/comentario", comentarioRouter);
 
 app.use((err, req, res, next) => {
   logger.error(`${req.method} ${req.baseUrl} - ${err.message}`);
