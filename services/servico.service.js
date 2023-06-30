@@ -34,6 +34,10 @@ async function getServico(servicoId) {
   return await ServicoRepository.getServico(servicoId);
 }
 
+async function addAnimalProprietarioServico(servico) {
+  return await ServicoRepository.addAnimalProprietarioServico(servico);
+}
+
 export default {
   createServico,
   updateServico,
@@ -41,4 +45,5 @@ export default {
   getServicos,
   getServico,
   getServicosByProprietarioId,
+  addAnimalProprietarioServico,
 };

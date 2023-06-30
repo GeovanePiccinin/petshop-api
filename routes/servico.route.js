@@ -18,4 +18,10 @@ router.get("/", ServicoController.getServicos);
 //select servico by id
 router.get("/:servicoId", ServicoController.getServico);
 
+//create servico
+router.post(
+  "/addAnimalProprietarioServico",
+  ServicoController.addAnimalProprietarioServico
+);
+
 export default router;

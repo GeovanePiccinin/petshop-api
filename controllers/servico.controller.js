@@ -56,6 +56,29 @@ async function getServicos(req, res, next) {
   }
 }
 
+async function addAnimalProprietarioServico(req, res, next) {
+  try {
+    let servico = req.body;
+    if (
+      !servico.descricao ||
+      !servico.valor ||
+      !servico.nomeAnimal ||
+      !servico.tipoAnimal ||
+      !servico.nomeProprietario ||
+      !servico.telefoneProprietario
+    ) {
+      throw new Error("Todos os campos são obrigatórios");
+    }
+    servico = await ServicoService.addAnimalProprietarioServico(servico);
+    res.send(servico);
+    logger.info(
+      `POST /addAnimalProprietarioServico - ${JSON.stringify(servico)}`
+    );
+  } catch (err) {
+    next(err);
+  }
+}
+
 async function getServico(req, res, next) {
   try {
     const servico = await ServicoService.getServico(req.params.servicoId);
@@ -72,4 +95,5 @@ export default {
   deleteServico,
   getServicos,
   getServico,
+  addAnimalProprietarioServico,
 };
