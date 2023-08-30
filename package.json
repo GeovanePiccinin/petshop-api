@@ -17,5 +17,8 @@
     "pg": "^8.10.0",
     "sequelize": "^6.31.0",
     "winston": "^3.8.2"
+  },
+  "devDependencies": {
+    "babel-register": "^6.26.0"
   }
 }
