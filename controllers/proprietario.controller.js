@@ -1,4 +1,7 @@
+import NodeCache from "node-cache";
 import ProprietarioService from "../services/proprietario.service.js";
+
+const myCache = new NodeCache({ stdTTL: 600 });
 
 async function createProprietario(req, res, next) {
   try {
@@ -40,7 +43,15 @@ async function deleteProprietario(req, res, next) {
 
 async function getProprietarios(req, res, next) {
   try {
-    res.send(await ProprietarioService.getProprietarios());
+    let proprietarios = myCache.get("allProprietarios");
+
+    if (proprietarios == null) {
+      proprietarios = await ProprietarioService.getProprietarios();
+      myCache.set("allProprietarios", proprietarios, 300);
+    } else {
+      console.log("proprietarios from cache");
+    }
+    res.send(proprietarios);
     logger.info("GET /proprietario");
   } catch (err) {
     next(err);
