@@ -1,11 +1,18 @@
 import AnimalService from "../services/animal.service.js";
+import { validationResult } from "express-validator";
 
 async function createAnimal(req, res, next) {
   try {
-    let animal = req.body;
-    if (!animal.nome || !animal.tipo || !animal.proprietario_id) {
-      throw new Error("Nome, tipo e proprietário são obrigatórios");
+    const errors = validationResult(req);
+
+    if (!errors.isEmpty()) {
+      throw new Error(JSON.stringify(errors.array(), null, 2));
     }
+
+    let animal = req.body;
+    /* if (!animal.nome || !animal.tipo || !animal.proprietario_id) {
+      throw new Error("Nome, tipo e proprietário são obrigatórios");
+    } */
     animal = await AnimalService.createAnimal(animal);
     res.send(animal);
     logger.info(`POST /animal - ${JSON.stringify(animal)}`);

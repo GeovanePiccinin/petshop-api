@@ -2,6 +2,7 @@ import "./env.js";
 import express from "express";
 import cors from "cors";
 import winston from "winston";
+
 import animalRouter from "./routes/animal.route.js";
 import proprietarioRouter from "./routes/proprietario.route.js";
 
@@ -20,6 +21,7 @@ global.logger = winston.createLogger({
 
 const app = express();
 app.use(express.json());
+
 app.use(cors());
 
 app.use("/animal", animalRouter);

@@ -1,10 +1,15 @@
 import express from "express";
 import AnimalController from "../controllers/animal.controller.js";
+import AnimalValidator from "../validators/animal.validator.js";
 
 const router = express.Router();
 
 //create animal
-router.post("/", AnimalController.createAnimal);
+router.post(
+  "/",
+  AnimalValidator.validate("createAnimal"),
+  AnimalController.createAnimal
+);
 
 //update animal
 router.put("/", AnimalController.updateAnimal);
