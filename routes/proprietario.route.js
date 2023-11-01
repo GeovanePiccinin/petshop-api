@@ -1,5 +1,6 @@
 import express from "express";
 import ProprietarioController from "../controllers/proprietario.controller.js";
+import { getCached } from "../middleware/redis.js";
 
 const router = express.Router();
 
@@ -14,6 +15,14 @@ router.delete("/:proprietario_id", ProprietarioController.deleteProprietario);
 
 //selectAll proprietario
 router.get("/", ProprietarioController.getProprietarios);
+
+//selectAll proprietario
+
+router.get(
+  "/redis-example",
+  getCached,
+  ProprietarioController.getProprietariosRedis
+);
 
 //select proprietario by id
 router.get("/:proprietario_id", ProprietarioController.getProprietario);

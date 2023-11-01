@@ -1,6 +1,16 @@
+/* 
+  Exemplo da utilização de cache combinado com o Banco de Dados.
+  A "solução de cache" acontece antes da requisição ao banco de dados, evitando consultas desnecessárias.
+  Opções (podemos utiliza um ou outro):
+  * node-cache: cache na memória do servidor web
+  * node-redis: cache em servidor externo (redis)
+*/
+
 import NodeCache from "node-cache";
+import { caching } from "../middleware/redis.js";
 import ProprietarioService from "../services/proprietario.service.js";
 
+/* setup básico do node-cache */
 const myCache = new NodeCache({ stdTTL: 600 });
 
 async function createProprietario(req, res, next) {
@@ -44,7 +54,6 @@ async function deleteProprietario(req, res, next) {
 async function getProprietarios(req, res, next) {
   try {
     let proprietarios = myCache.get("allProprietarios");
-
     if (proprietarios == null) {
       proprietarios = await ProprietarioService.getProprietarios();
       myCache.set("allProprietarios", proprietarios, 300);
@@ -53,6 +62,17 @@ async function getProprietarios(req, res, next) {
     }
     res.send(proprietarios);
     logger.info("GET /proprietario");
+  } catch (err) {
+    next(err);
+  }
+}
+
+async function getProprietariosRedis(req, res, next) {
+  try {
+    const proprietarios = await ProprietarioService.getProprietarios();
+    caching(req.url, proprietarios);
+    res.send(proprietarios);
+    logger.info("GET /proprietario/redis-example");
   } catch (err) {
     next(err);
   }
@@ -75,5 +95,6 @@ export default {
   updateProprietario,
   deleteProprietario,
   getProprietarios,
+  getProprietariosRedis,
   getProprietario,
 };
