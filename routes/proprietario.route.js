@@ -19,7 +19,7 @@ router.get("/", ProprietarioController.getProprietarios);
 //selectAll proprietario
 
 router.get(
-  "/redis-example",
+  "/redis-example-proprietarios",
   getCached,
   ProprietarioController.getProprietariosRedis
 );

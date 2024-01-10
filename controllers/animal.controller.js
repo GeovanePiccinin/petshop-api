@@ -1,4 +1,5 @@
 import AnimalService from "../services/animal.service.js";
+import { caching } from "../middleware/redis.js";
 
 async function createAnimal(req, res, next) {
   try {
@@ -47,6 +48,17 @@ async function getAnimais(req, res, next) {
   }
 }
 
+async function getAnimaisRedis(req, res, next) {
+  try {
+    const animais = await AnimalService.getAnimais();
+    caching(req.url, animais);
+    res.send(animais);
+    logger.info("GET /animais/redis-example");
+  } catch (err) {
+    next(err);
+  }
+}
+
 async function getAnimal(req, res, next) {
   try {
     const animal = await AnimalService.getAnimal(req.params.animal_id);
@@ -63,4 +75,5 @@ export default {
   deleteAnimal,
   getAnimais,
   getAnimal,
+  getAnimaisRedis,
 };
