@@ -19,11 +19,11 @@ async function deleteAnimal(animal_id) {
   return await AnimalRepository.deleteAnimal(animal_id);
 }
 
-async function getAnimais(proprietario_id) {
+async function getAnimais(proprietario_id, sortby, sort, size, offset) {
   if (proprietario_id) {
     return await AnimalRepository.getAnimaisByProprietarioId(proprietario_id);
   }
-  return await AnimalRepository.getAnimais();
+  return await AnimalRepository.getAnimais(sortby, sort, size, offset);
 }
 
 async function getAnimal(animal_id) {

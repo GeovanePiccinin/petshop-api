@@ -39,8 +39,22 @@ async function deleteAnimal(req, res, next) {
 }
 
 async function getAnimais(req, res, next) {
+  const page = req.query.page ? req.query.page : 1;
+  const size = req.query.size ? req.query.size : 10;
+  const offset = (page - 1) * size;
+  const sort = req.query.sort ? req.query.sort : "ASC";
+  const sortby = req.query.sortby ? req.query.sortby : "nome";
+
   try {
-    res.send(await AnimalService.getAnimais(req.query.proprietario_id));
+    res.send(
+      await AnimalService.getAnimais(
+        req.query.proprietario_id,
+        sortby,
+        sort,
+        size,
+        offset
+      )
+    );
     logger.info("GET /animal");
   } catch (err) {
     next(err);

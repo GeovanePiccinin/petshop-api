@@ -49,12 +49,24 @@ async function deleteAnimal(animal_id) {
   }
 }
 
-async function getAnimais() {
+async function getAnimais(
+  sortby = "nome",
+  sort = "ASC",
+  size = "10",
+  offset = "0"
+) {
   const conn = await connect();
   try {
-    const res = await conn.query("SELECT * FROM animais");
+    const query = `SELECT * 
+                    FROM "animais" 
+                    ORDER BY ${sortby} ${sort} 
+                    LIMIT $1 OFFSET $2`;
+
+    const res = await conn.query(query, [size, offset]);
+
     return res.rows;
   } catch (err) {
+    console.log(err);
     throw err;
   } finally {
     conn.release();
