@@ -5,7 +5,7 @@ export async function redisConnect() {
     return global.redisClient;
   }
   const redisClient = redis.createClient();
-  redisClient.on("error", (error) => console.error(`Error : ${error}`));
+  redisClient.on("error", (error) => console.error(`Redis Error : ${error}`));
   global.redisClient = await redisClient.connect();
 }
 
